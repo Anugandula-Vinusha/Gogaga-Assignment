@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Flight Search – HYD to DEL</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app-shell">
+       
+        <datalist id="city-options">
+            <option value="Hyderabad (HYD)"></option>
+            <option value="New Delhi (DEL)"></option>
+            <option value="Mumbai (BOM)"></option>
+            <option value="Bengaluru (BLR)"></option>
+            <option value="Chennai (MAA)"></option>
+            <option value="Kolkata (CCU)"></option>
+            <option value="Pune (PNQ)"></option>
+            <option value="Ahmedabad (AMD)"></option>
+            <option value="Goa (GOI)"></option>
+            <option value="Jaipur (JAI)"></option>
+            <option value="Kochi (COK)"></option>
+            <option value="Indore (IDR)"></option>
+        </datalist>
+
+        
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <div class="trip-toggle">
+                    <button class="trip-toggle-btn active">Return</button>
+                    <button class="trip-toggle-btn">One-way</button>
+                    <button class="trip-toggle-btn">Multi-city</button>
+                </div>
+
+                <div class="search-row">
+                    <div class="field-group">
+                        <label class="field-label">From</label>
+                        <input id="from-city" class="field-input large" list="city-options" value="Hyderabad (HYD)" />
+                    </div>
+
+                    <button class="swap-btn" id="swap-btn" aria-label="Swap cities">⇄</button>
+
+                    <div class="field-group">
+                        <label class="field-label">To</label>
+                        <input id="to-city" class="field-input large" list="city-options" value="New Delhi (DEL)" />
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Departure</label>
+                        <input type="date" id="depart-date" class="field-input" />
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Return</label>
+                        <input type="date" id="return-date" class="field-input" />
+                    </div>
+
+                    <!-- Travellers  -->
+                    <div class="field-group">
+                        <label class="field-label">Travellers</label>
+                        <select id="travellers" class="field-input">
+                            <option>1 Traveller</option>
+                            <option selected>2 Travellers</option>
+                            <option>3 Travellers</option>
+                            <option>4 Travellers</option>
+                            <option>5 Travellers</option>
+                            <option>6 Travellers</option>
+                        </select>
+                    </div>
+
+                    <!-- ✅ Class field -->
+                    <div class="field-group">
+                        <label class="field-label">Class</label>
+                        <select id="class" class="field-input">
+                            <option>Economy</option>
+                            <option>Premium Economy</option>
+                            <option>Business</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="top-bar-right">
+                <button class="update-btn" id="update-btn">Update</button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <section class="main-layout">
+            <!-- LEFT SIDEBAR -->
+            <aside class="sidebar-left">
+                <div class="card-block">
+                    <div class="card-header">
+                        <span class="card-title">Book now</span>
+                    </div>
+                    <p class="card-body-text">
+                        Prices are expected to rise<br />
+                        <strong>₹170</strong> in the next 15 days
+                    </p>
+                    <div class="card-footer-row">
+                        <span class="pill-toggle-label">Track prices</span>
+                        <label class="switch">
+                            <input type="checkbox" checked />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="card-block">
+                    <div class="card-header">
+                        <span class="card-title">Smart Filters</span>
+                        <span class="card-subtitle">BETA · Powered by ChatGPT</span>
+                    </div>
+                    <p class="card-body-text small">
+                        61 of 1779 flights
+                    </p>
+                </div>
+
+                <div class="card-block">
+                    <div class="card-header">
+                        <span class="card-title">Stops</span>
+                    </div>
+                    <div class="checkbox-row">
+                        <label>
+                            <input id="filter-direct" type="checkbox" checked />
+                            Direct
+                            <span class="chip-price">₹ 6,834</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label>
+                            <input id="filter-1stop" type="checkbox" checked />
+                            1 stop
+                            <span class="chip-price">₹ 8,166</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label class="disabled">
+                            <input id="filter-2plus" type="checkbox" checked />
+                            2+ stops
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Payment Method drop down list -->
+                <div class="card-block">
+                    <div class="card-header">
+                        <span class="card-title">Payment method</span>
+                    </div>
+                    <select id="payment-method" class="field-input">
+                        <option>UPI</option>
+                        <option>Credit Card</option>
+                        <option>Net Banking</option>
+                    </select>
+                </div>
+
+                <div class="card-block">
+                    <div class="card-header">
+                        <span class="card-title">Times</span>
+                    </div>
+
+                    <div class="time-filter-block">
+                        <div class="time-filter-header">
+                            <button class="tab-btn active">Take-off</button>
+                            <button class="tab-btn">Landing</button>
+                        </div>
+                        <div class="time-filter-body">
+                            <p class="time-filter-title">Take-off from origin</p>
+                            <input type="range" id="outbound-time-range" min="0" max="23" value="0" />
+                            <p class="time-filter-value">
+                                From <span id="outbound-time-label">00:00</span>
+                            </p>
+                        </div>
+                        <div class="time-filter-body">
+                            <p class="time-filter-title">Take-off from destination</p>
+                            <input type="range" id="return-time-range" min="0" max="23" value="0" />
+                            <p class="time-filter-value">
+                                From <span id="return-time-label">00:00</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            
+            <main class="results-panel">
+                <div class="summary-bar">
+                    <div class="summary-left">
+                        <div class="summary-route-block">
+                            <span id="summary-route" class="summary-route">
+                                Hyderabad (HYD) → New Delhi (DEL)
+                            </span>
+                            <span id="summary-dates" class="summary-dates">
+                                Select your dates
+                            </span>
+                        </div>
+                        <div class="summary-line">
+                            <span class="summary-label">Departure</span>
+                            <span class="summary-flight" id="summary-outbound-flight">
+                                12:00 → 14:25 · IndiGo
+                            </span>
+                            <span class="summary-price" id="summary-outbound-price">
+                                ₹ 3,550
+                            </span>
+                        </div>
+                        <div class="summary-line">
+                            <span class="summary-label">Return</span>
+                            <span class="summary-flight" id="summary-return-flight">
+                                20:15 → 22:30 · IndiGo
+                            </span>
+                            <span class="summary-price" id="summary-return-price">
+                                ₹ 3,599
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="summary-center">
+                        <span class="summary-total-label">Total</span>
+                        <span class="summary-total-value" id="summary-total">₹ 6,834</span>
+                        <span class="summary-discount">Return discount applied: ₹ 315</span>
+                    </div>
+
+                    <div class="summary-right">
+                        <button class="primary-btn">Book now</button>
+                        <button class="secondary-btn">Lock price</button>
+                    </div>
+                </div>
+
+              
+                <div class="flight-grid flight-scroll">
+                    <div id="outbound-list" class="flight-column"></div>
+                    <div id="return-list" class="flight-column"></div>
+                </div>
+            </main>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="sidebar-right">
+                <div class="assistant-card">
+                    <div class="assistant-header">
+                        <span class="assistant-title">Travel assistant</span>
+                    </div>
+                    <ol class="assistant-list">
+                        <li>Your selected Indigo flights are highly recommended.</li>
+                        <li>Your selected return flight is regularly 90% on time.</li>
+                        <li>Your arrival flight reaching at 10 am will help you reach the hotel at perfect check-in time.</li>
+                        <li>On Friday when you arrive, Delhi weather is below 18° with high chances of rain.</li>
+                    </ol>
+
+                    <div class="assistant-section-title">Next Steps</div>
+                    <ul class="assistant-list">
+                        <li>Decide on one-way vs round-trip and your preferred dates.</li>
+                        <li>Use fare trackers to get price alerts.</li>
+                        <li>Book 2–4 weeks in advance for best deals.</li>
+                        <li>Cross-check baggage rules before payment.</li>
+                    </ul>
+
+                    <div class="assistant-input-bar">
+                        <input type="text" class="assistant-input" placeholder="Ask anything (mock)" disabled />
+                        <button class="assistant-input-btn" disabled>➤</button>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
