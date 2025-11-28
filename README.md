@@ -1,8 +1,9 @@
- ✈️ Flight Search UI (Gogaga Assignment)
+ ✈️ **Flight Search UI (Gogaga Assignment)**
 
 A clean, interactive flight-search interface built with HTML, CSS, and Vanilla JavaScript, featuring dynamic flight selection, live summary updates, and an assistant-style sidebar.
 
-🚀 Features
+
+**🚀 Features**
 
 Return / One-way / Multi-city trip modes
 
@@ -24,7 +25,8 @@ Assistant panel with travel recommendations
 
 Fully responsive layout
 
-🧩 Tech Stack
+
+**🧩 Tech Stack**
 
 HTML5
 
@@ -40,7 +42,8 @@ Runtime DOM construction
 
 Event-driven UI updates
 
-📁 Project Structure
+**
+📁 Project Structure**
 Gogaga/
 │
 ├── index.html         # Main UI layout
@@ -50,7 +53,7 @@ Gogaga/
 
 
 
-🧠 How It Works
+**🧠 How It Works**
 
 The UI is powered by a centralized appState object:
 
@@ -66,13 +69,15 @@ Swapping cities updates UI + state
 
 This approach keeps the app simple and reactive without frameworks.
 
-🚀 How to Run
+
+**🚀 How to Run**
 
 Just download the files and open index.html in any browser.
 
 No installation is needed.
 
-🔧 Things I Want to Improve Later
+
+**🔧 Things I Want to Improve Later**
 
 Add real airline logos
 
